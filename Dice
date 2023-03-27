@@ -1,0 +1,30 @@
+import random
+import emoji
+
+def throw_dice():
+    # Выпадает случайное число от 1 до 6
+    return random.randint(1, 6)
+
+def handle_message(message):
+    # Проверяем, является ли сообщение эмодзи кубика
+    if message in emoji.UNICODE_EMOJI['en'].keys() and 'dice' in emoji.UNICODE_EMOJI['en'][message]:
+        # Бросаем кубик и получаем результат
+        result = throw_dice()
+        # Отправляем пользователю ответ в зависимости от выпавшего числа
+        if result == 1:
+            return "Выпало 1"
+        elif result == 2:
+            return "Выпало 2"
+        elif result == 3:
+            return "Выпало 3"
+        elif result == 4:
+            return "Выпало 4"
+        elif result == 5:
+            return "Выпало 5"
+        else:
+            return "Выпало 6"
+    else:
+        return "Это не кубик"
+
+# Пример использования функции handle_message
+print(handle_message(emoji.emojize(":game_die:", language="en")))  # Вывод: "Выпало 3"
